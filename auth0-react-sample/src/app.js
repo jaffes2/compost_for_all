@@ -4,11 +4,17 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
-import { NavBar, Footer, Loading } from "./components";
+import { NavBar, Footer, Loading, MapContainer } from "./components";
 import { Home, Profile, ExternalApi } from "./views";
 import ProtectedRoute from "./auth/protected-route";
 
+import { Map, GoogleApiWrapper } from 'google-maps-react';
 import "./app.css";
+
+const mapStyles = {
+  width: '100%',
+  height: '100%'
+};
 
 const App = () => {
   const { isLoading } = useAuth0();
@@ -26,6 +32,12 @@ const App = () => {
           <ProtectedRoute path="/profile" component={Profile} />
           <ProtectedRoute path="/external-api" component={ExternalApi} />
         </Switch>
+      </div>
+
+      <div>
+        <MapContainer/>
+      />
+
       </div>
       <Footer />
     </div>
